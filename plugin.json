@@ -1,0 +1,30 @@
+{
+  "author": "SUPINFO AppFactory",
+  "pluginName": "Media Center Manual",
+  "pluginDescription": "The Media Center plugin is incredibly useful for a variety of different media use cases. Create categorized manual entries of audio, video, and other stream media content.Related Topics:MP4",
+  "supportEmail": "supinfoappfactory@supinfo.com",
+  "pluginIcon": "icon.png",
+  "offlineModeEnabled": true,
+  "supportSite": "http://support.appdocumentation.com/knowledge-base/media-center-manual-plugin/",
+  "control": {
+    "content": {
+      "enabled": true
+    },
+    "design": {
+      "enabled": true
+    },
+    "settings": {
+      "enabled": false
+    }
+  },
+  "widget": {
+  },
+  "features": [
+    {
+      "name": "BackgroundAudio"
+    }
+  ],
+  "languages": [
+    "en"
+  ]
+}

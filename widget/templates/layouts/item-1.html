@@ -1,0 +1,50 @@
+<div class="holder padding-zero text-overlay">
+    <div class="media-center-plugin layout1">
+        <div class="media-center-banner clearfix">
+            <div ng-class="WidgetMedia.showVideo == false ? '' : 'video-container-background'"
+                 class="plugin-slider text-center">
+                <div ng-class="WidgetMedia.showVideo == false ? '' : 'video-container-background'"
+
+                     class="plugin-slide">
+                    <!--ng-style="WidgetMedia.showVideo == false ? {'min-height': '192px'} : {}" style="width: 100% !important;max-height:192px !important"
+                         -->
+                    <img data-ng-hide="WidgetMedia.showVideo || !WidgetMedia.item.data.topImage" load-image="16x9" style="min-height: {{(WidgetMedia.deviceWidth*9)/16+'px'}} !important;"
+                         crop-width="1280" crop-height="720" crop-type="crop"
+                         data-final-src="{{WidgetMedia.item.data.topImage}}"/>
+
+                    <div ng-include="'templates/layouts/video-player.html'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="text-left padded padding-bottom-zero clearfix ">
+            <h4 class="margin-top-zero" style="font-size: 16px;">{{WidgetMedia.item.data.title}}</h4>
+            <h5 class="margin-bottom-zero">{{WidgetMedia.item.data.summary}}</h5>
+        </div>
+        <div class="padded padding-top-zero">
+            <hr class="small"
+                ng-if="WidgetMedia.item.data.audioUrl || WidgetMedia.item.data.videoUrl || WidgetMedia.item.data.srcUrl || WidgetMedia.item.data.links.length">
+            <div class="link-list">
+                <a class="text-primary" ng-if="WidgetMedia.item.data.audioUrl"
+                   href="#/nowplaying/{{WidgetMedia.item.id}}">Listen</a>
+                <a class="text-primary" ng-if="WidgetMedia.item.data.videoUrl"
+                   ng-click="WidgetMedia.toggleShowVideo();">Watch</a>
+                <!--<a class="text-primary" ng-if="WidgetMedia.item.data.srcUrl" href="{{WidgetMedia.item.data.srcUrl}}"
+                   target="_blank">View Source</a>-->
+                <a id="sourceToggleButton" class="text-primary" ng-if="WidgetMedia.item.data.srcUrl" ng-click="WidgetMedia.showSourceIframe()">View Source</a>
+                <a class="text-primary" ng-if="WidgetMedia.item.data.links.length" ng-click="WidgetMedia.openLinks(WidgetMedia.item.data.links)">More Options</a>
+
+            </div>
+            <hr class="small" ng-if="WidgetMedia.item.data.body">
+            <p ng-if="WidgetMedia.item.data.body" ng-bind-html="WidgetMedia.item.data.body | safeHtml"></p>
+
+
+            <!--<div class="dynamic-links" ng-repeat="link in WidgetMedia.item.data.links">
+                <p ng-click="WidgetMedia.executeAction(link)" >
+                    <span ng-if="!link.iconUrl" class="icon icon-cog"></span>
+                    <span ng-if="link.iconUrl" class="icon"><img load-image="1x1" crop-width="17" crop-height="17" crop-type="crop" data-final-src="{{link.iconUrl}}"/></span>
+                    {{link.title}}
+                </p>
+            </div>-->
+        </div>
+    </div>
+</div>

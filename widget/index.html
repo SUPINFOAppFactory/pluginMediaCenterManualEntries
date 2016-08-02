@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="mediaCenterWidget">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <!-- CSS -->
+    <!--<link href="../../../styles/bootstrap.css" rel="stylesheet">-->
+    <link href="../../../styles/helper.css" rel="stylesheet">
+    <link href="../../../styles/siteIcons.css" rel="stylesheet">
+    <link href="../../../scripts/owlCarousel/owlCarousel.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../styles/transitionAnimation.css">
+    <link href="assets/css/widget.app.css" rel="stylesheet">
+    <!--SDK js-->
+    <script src="../../../scripts/jquery/jquery-1.11.2.min.js"></script>
+    <script src="../../../scripts/smartcrop.js"></script>
+    <script src="../../../scripts/buildfire.js"></script>
+    <script src="../../../scripts/angular/angular.min.js"></script>
+    <script src="../../../scripts/angular/angular-route.min.js"></script>
+    <script src="../../../scripts/angular/angular-animate.min.js"></script>
+    <script src="../../../scripts/angular/ui-bootstrap.min.js"></script>
+    <script src="../../../scripts/owlCarousel/owlCarousel.js"></script>
+    <!-- JS -->
+    <script src="../../../scripts/angular/ng-infinite-scroll.custom.js"></script>
+    <!--app js-->
+    <script src="app.js"></script>
+    <script src="enums.js"></script>
+    <script src="services.js"></script>
+    <script src="directives.js"></script>
+    <script src="filters.js"></script>
+    <script src="modals.js"></script>
+    <!--controllers js-->
+    <script src="controllers/widget.home.controller.js"></script>
+    <script src="controllers/widget.media.controller.js"></script>
+    <script src="controllers/widget.nowplaying.controller.js"></script>
+
+    <!--carousel-->
+    <script src="../../../scripts/buildfire/components/carousel/carousel.js"></script>
+
+    <script src="assets/js/angular-sanitize.min.js"></script>
+    <script src="assets/js/videogular.min.js"></script>
+    <script src="assets/js/vg-controls.min.js"></script>
+    <script src="assets/js/vg-overlay-play.min.js"></script>
+    <script src="../../../scripts/angular/angular-touch.js"></script>
+
+    <!-- Audio player-->
+    <script src="../../../scripts/buildfire/services/media/audioPlayer.js"></script>
+
+    <!--Video Embeder for Vimeo Youtube-->
+    <script src="assets/js/ng-videosharing-embed.min.js"></script>
+</head>
+<!--<body class="scrollable customBackground" ng-style="currentBackgroundImage"
+      ng-class="blackBackground ? 'blackBackground': ''">-->
+<body class="body-scroll">
+<div class="main_view">
+    <div ng-class="showFeed ? 'showing' : 'notshowing'" data-back-img="{{backgroundImage}}" id="feedView" class="content slide infinite-scroll-parent" >
+        <div ng-controller="WidgetHomeCtrl as WidgetHome">
+            <div ng-include="'templates/home.html'">
+            </div>
+        </div>
+    </div>
+    <div data-back-img="{{backgroundImage}}"
+         ng-view=""
+         class="slide content"
+         ng-if="!showFeed"></div>
+
+    <div class="ng-hide" ng-click="showFeed = true;" id="showFeedBtn"></div>
+
+</div>
+</body>
+<script>
+    function callPlayer(frame_id, func, args) {
+        if (window.jQuery && frame_id instanceof jQuery) frame_id = frame_id.get(0).id;
+        var iframe = document.getElementById(frame_id);
+        if (iframe && iframe.tagName.toUpperCase() != 'IFRAME') {
+            iframe = iframe.getElementsByTagName('iframe')[0];
+        }
+        if (iframe) {
+            // Frame exists,
+            iframe.contentWindow.postMessage(JSON.stringify({
+                "event": "command",
+                "func": func,
+                "args": args || [],
+                "id": frame_id
+            }), "*");
+        }
+    }
+    function callVimeoPlayer(iframeId) {
+        var iframe = $('#' + iframeId)[0];
+        var url = 'https://player.vimeo.com';
+        /*   if (iframe.src.indexOf('https') == 0)
+         url = 'https://player.vimeo.com';*/
+        iframe.contentWindow.postMessage({method: 'pause'}, url);
+    }
+</script>
+</html>

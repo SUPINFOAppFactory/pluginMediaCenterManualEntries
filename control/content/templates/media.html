@@ -1,0 +1,119 @@
+<h4>Manual Item Entry Details Content</h4><br>
+<div id="topImage"></div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+        <span>Title</span>
+    </div>
+    <div class="main col-md-9 pull-right">
+        <input type="text" class="form-control" placeholder="Item Title" ng-model="ContentMedia.item.data.title">
+    </div>
+</div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+        <span>Deep Link URL</span>
+    </div>
+    <div class="main col-md-9 pull-right">
+        <span>{{ContentMedia.item.data.deepLinkUrl}}</span>
+    </div>
+</div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+        <span>Summary</span>
+    </div>
+    <div class="main col-md-9 pull-right">
+        <textarea class="form-control" placeholder="Summary Text" ng-model="ContentMedia.item.data.summary"></textarea>
+    </div>
+</div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+        <span>Body Content</span>
+    </div>
+</div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="main col-md-12 pull-right">
+        <textarea class="form-control" placeholder="WYSIWYG" ui-tinymce="ContentMedia.bodyContentWYSIWYGOptions"
+                  ng-model="ContentMedia.item.data.body"></textarea>
+    </div>
+</div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+        <span>Source URL</span>
+    </div>
+    <div class="main col-md-9 pull-right">
+        <input type="text" class="form-control" placeholder="Source URL" ng-model="ContentMedia.item.data.srcUrl">
+    </div>
+</div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+        <span>Video URL</span>
+    </div>
+    <div class="main col-md-9 pull-right">
+        <input type="text" class="form-control" video-url placeholder="Video URL"
+               ng-model="ContentMedia.item.data.videoUrl">
+    </div>
+</div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+        <span>Audio Title</span>
+    </div>
+    <div class="main col-md-9 pull-right">
+        <input type="text" class="form-control" placeholder="Audio Title" ng-model="ContentMedia.item.data.audioTitle">
+    </div>
+</div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+        <span>Album Artists</span>
+    </div>
+    <div class="main col-md-9 pull-right">
+        <input type="text" class="form-control" placeholder="Album Artists" ng-model="ContentMedia.item.data.artists">
+    </div>
+</div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+        <span>Audio URL</span>
+    </div>
+    <div class="main col-md-9 pull-right">
+        <input type="text" class="form-control" placeholder="Audio URL" ng-model="ContentMedia.item.data.audioUrl">
+    </div>
+</div>
+<hr class="none">
+<div id="audioImage"></div>
+<hr>
+<div class="item clearfix row">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+        <span>Media Date</span>
+    </div>
+    <div class="main col-md-9 pull-right">
+        <input id="datePickerMCM" dt="{{ContentMedia.item.data.mediaDate}}" type="date" class="form-control"
+               ng-model="ContentMedia.item.data.mediaDate" readonly='true'/>
+    </div>
+</div>
+<hr class="none">
+<div id="actionItems"></div>
+<hr class="none">
+<div class="item clearfix row">
+    <div class="main col-md-9 pull-right">
+        <div class="col-md-6 pull-right padding-right-zero padding-left-ten">
+            <a class="btn btn-primary pull-right stretch" ng-click="ContentMedia.done()"
+               ng-disabled="!ContentMedia.isItemValid" href="javaScript:void(0);">Done</a>
+        </div>
+    </div>
+</div>
+        <script>
+            $(function(){
+                if ( $('#datePickerMCM')[0].type != 'date' ) $('#datePickerMCM').datepicker();
+                else console.log("DATEEEEEEEE");
+                $('#ui-datepicker-div').css('background-color','beige');
+            })
+
+        </script>
